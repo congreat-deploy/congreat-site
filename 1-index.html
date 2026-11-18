@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="congreat - coming soon">
+<title>congreat — coming soon</title>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --bg-term: #0d1117;
+    --frame: #161b22;
+    --border: #21262d;
+    --ink: #c9d1d9;
+    --ink-dim: #6e7681;
+    --ink-faint: #484f58;
+    --green: #3fb950;
+    --cyan: #39c5cf;
+    --yellow: #d29922;
+    --magenta: #bc8cff;
+    --blue: #58a6ff;
+    --red: #f85149;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88, 166, 255, 0.05), transparent),
+      repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px);
+  }
+
+  .term {
+    width: 100%;
+    max-width: 720px;
+    background: var(--bg-term);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    overflow: hidden;
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--frame);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    user-select: none;
+  }
+
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; }
+  .dot.y { background: #febc2e; }
+  .dot.g { background: #28c840; }
+
+  .term-title {
+    margin-left: 10px;
+    color: var(--ink-dim);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .term-body { padding: 22px 24px 26px; min-height: 380px; }
+
+  .line { white-space: pre-wrap; word-break: break-word; opacity: 0; }
+  .line.on { opacity: 1; }
+
+  .prompt { color: var(--green); }
+  .path { color: var(--blue); }
+  .cmd { color: var(--ink); }
+  .out { color: var(--ink-dim); }
+  .k { color: var(--magenta); }   /* keyword */
+  .s { color: var(--cyan); }      /* string */
+  .n { color: var(--yellow); }    /* number/flag */
+  .c { color: var(--ink-faint); } /* comment */
+  .ok { color: var(--green); }
+
+  .hero {
+    margin: 14px 0 4px;
+    font-size: clamp(26px, 7.5vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    color: var(--ink);
+    opacity: 0;
+  }
+  .hero.on { opacity: 1; }
+  .hero .fn { color: var(--yellow); }
+  .hero .str { color: var(--cyan); }
+  .hero .pn { color: var(--ink-dim); }
+  .hero .ind { display: inline-block; width: 2ch; }
+
+  .tagline {
+    color: var(--ink-dim);
+    font-size: 13.5px;
+    margin: 6px 0 20px;
+    opacity: 0;
+  }
+  .tagline.on { opacity: 1; }
+
+  .cursor {
+    display: inline-block;
+    width: 9px;
+    height: 1.15em;
+    background: var(--green);
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: blink 1.06s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .statusline {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--frame);
+    border-top: 1px solid var(--border);
+    padding: 7px 14px;
+    font-size: 12px;
+    color: var(--ink-dim);
+    user-select: none;
+  }
+  .statusline .mode { color: var(--green); font-weight: 700; }
+  .statusline .right { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  @media (max-width: 560px) {
+    body { padding: 14px; font-size: 13.5px; }
+    .term-body { padding: 16px 16px 20px; min-height: 320px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="term" role="main" aria-label="congreat - coming soon">
+    <div class="term-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">team@congreat: ~/congreat.co — zsh</span>
+    </div>
+    <div class="term-body" id="body">
+      <div class="line" data-t="cmd"><span class="prompt">team@congreat</span> <span class="path">~</span> % <span class="cmd">whoami</span></div>
+      <div class="line" data-t="out"><span class="out">congreat — an AI crew that learns how you work, then does the busywork for you.</span></div>
+      <div class="line" data-t="cmd"><span class="prompt">team@congreat</span> <span class="path">~</span> % <span class="cmd">git status</span></div>
+      <div class="line" data-t="out"><span class="out">On branch </span><span class="k">main</span><span class="out">&nbsp;&nbsp;</span><span class="c">// something new is compiling…</span></div>
+      <div class="line" data-t="cmd"><span class="prompt">team@congreat</span> <span class="path">~</span> % <span class="cmd">./release --world</span></div>
+      <div class="hero" id="hero"><span class="fn">console</span><span class="pn">.</span><span class="fn">log</span><span class="pn">(</span><br><span class="ind"></span><span class="str">"coming soon"</span><br><span class="pn">);</span></div>
+      <div class="tagline" id="tagline"><span class="c"># we&rsquo;re still typing. the machines are already working.</span></div>
+      <div class="line" data-t="cmd"><span class="prompt">team@congreat</span> <span class="path">~</span> % <span class="cursor" aria-hidden="true"></span></div>
+    </div>
+    <div class="statusline">
+      <span><span class="mode">BUILDING</span>&nbsp;&nbsp;main*&nbsp;&nbsp;[congreat.co]</span>
+      <span class="right">utf-8 · zsh · © 2026 congreat</span>
+    </div>
+  </main>
+
+<script>
+(function () {
+  var lines = Array.prototype.slice.call(document.querySelectorAll('#body .line'));
+  var hero = document.getElementById('hero');
+  var tagline = document.getElementById('tagline');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function showAll() {
+    lines.forEach(function (l) { l.classList.add('on'); });
+    hero.classList.add('on');
+    tagline.classList.add('on');
+  }
+
+  if (reduce) { showAll(); return; }
+
+  var i = 0;
+  function next() {
+    if (i < lines.length) {
+      var el = lines[i++];
+      el.classList.add('on');
+      if (i === lines.length - 2) { hero.classList.add('on'); }
+      if (i === lines.length - 1) { tagline.classList.add('on'); }
+      var kind = el.getAttribute('data-t');
+      setTimeout(next, kind === 'cmd' ? 620 : 340);
+    }
+  }
+  setTimeout(next, 350);
+})();
+</script>
+</body>
+</html>
